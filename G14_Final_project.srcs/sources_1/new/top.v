@@ -35,8 +35,6 @@ module lab5 (
     debounce l_debounce(.pb_debounced(debounce_BTNL),.pb(BTNL),.clk(clk));
     wire left;
     onepulse l_onepulse(.pb_debounced(debounce_BTNL),.clk(clk_div_top),.pb_1pulse(left));
-    
-    
 
     //mouse
     wire on_board;
