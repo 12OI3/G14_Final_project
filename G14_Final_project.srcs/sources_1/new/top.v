@@ -1,4 +1,4 @@
-module lab5 ( // last change 1/13 1406
+module lab5 ( 
     input clk,
     input rst,
     input BTNL,
@@ -10,11 +10,44 @@ module lab5 ( // last change 1/13 1406
     output [3:0] DIGIT,
     output [6:0] DISPLAY
 );
-    parameter P1ACK = 2'b00;
-    parameter P1to2 = 2'b01;
-    parameter P2ACK = 2'b10;
-    parameter P2to1 = 2'b11;
-    reg [1:0] state = 0;
-    reg [1:0] next_state = 0;
+
+    // ====================================
+    //  IDLE  state: prepare for the game
+    //  P1ACK state: ready for p1's action
+    //  P1TO2 state: prepare for p2 state
+    //  P2ACK state: ready for p2's action
+    //  P2TO1 state: prepare for p1 state
+    // ====================================
+    parameter IDLE  = 0;
+    parameter P1ACK = 1;
+    parameter P1TO2 = 2;
+    parameter P2ACK = 3;
+    parameter P2TO1 = 4;
+    //trigger to change state
+    reg state_prepare = 0;
+    reg [2:0] state = IDLE;
+    reg [2:0] next_state = IDLE;
+    
+    //
+    always @(posedge clk, posedge rst) begin
+        if(rst)
+            state = IDLE;
+        else
+            state = next_state;
+    end
+
+    always @(*) begin
+        if(state_prepare)begin
+            state_prepare = ~state_prepare;
+            case(state)
+                IDLE   :next_state = P1ACK;
+                P1ACK  :next_state = P1TO2;
+                P1TO2  :next_state = P2ACK;
+                P2ACK  :next_state = P2TO1;
+                P2TO1  :next_state = P1ACK;
+                default:next_state = IDLE;
+            endcase
+        end
+    end
 
 endmodule
