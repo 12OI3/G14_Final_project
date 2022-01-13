@@ -1,4 +1,4 @@
-module lab5 ( 
+module mouse_control ( 
     input clk,
     input rst,
     output on_board,
