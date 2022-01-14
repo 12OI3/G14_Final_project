@@ -1,4 +1,4 @@
-module lab5 ( 
+module Top ( 
     input clk,
     input rst,
     input BTNC,
@@ -13,36 +13,42 @@ module lab5 (
     
     //clk for general
     wire clk_div_top;
-    clock_divider #(20) state_clock_divider(clk,clk_div_top);//20
+    clock_divider #(20) _top_clock_divider(clk,clk_div_top);//20
     //button onepulse & debounce
     wire debounce_BTNC;
-    debounce c_debounce(.pb_debounced(debounce_BTNC),.pb(BTNC),.clk(clk));
+    debounce _c_debounce(.pb_debounced(debounce_BTNC),.pb(BTNC),.clk(clk));
     wire bomb;
-    onepulse c_onepulse(.pb_debounced(debounce_BTNC),.clk(clk_div_top),.pb_1pulse(bomb));
+    onepulse _c_onepulse(.pb_debounced(debounce_BTNC),.clk(clk_div_top),.pb_1pulse(bomb));
     wire debounce_BTNU;
-    debounce u_debounce(.pb_debounced(debounce_BTNU),.pb(BTNU),.clk(clk));
+    debounce _u_debounce(.pb_debounced(debounce_BTNU),.pb(BTNU),.clk(clk));
     wire up;
-    onepulse u_onepulse(.pb_debounced(debounce_BTNU),.clk(clk_div_top),.pb_1pulse(up));
+    onepulse _u_onepulse(.pb_debounced(debounce_BTNU),.clk(clk_div_top),.pb_1pulse(up));
     wire debounce_BTNR;
-    debounce r_debounce(.pb_debounced(debounce_BTNR),.pb(BTNR),.clk(clk));
+    debounce _r_debounce(.pb_debounced(debounce_BTNR),.pb(BTNR),.clk(clk));
     wire right;
-    onepulse r_onepulse(.pb_debounced(debounce_BTNR),.clk(clk_div_top),.pb_1pulse(right));
+    onepulse _r_onepulse(.pb_debounced(debounce_BTNR),.clk(clk_div_top),.pb_1pulse(right));
     wire debounce_BTND;
-    debounce d_debounce(.pb_debounced(debounce_BTND),.pb(BTND),.clk(clk));
+    debounce _d_debounce(.pb_debounced(debounce_BTND),.pb(BTND),.clk(clk));
     wire down;
-    onepulse d_onepulse(.pb_debounced(debounce_BTND),.clk(clk_div_top),.pb_1pulse(down));
+    onepulse _d_onepulse(.pb_debounced(debounce_BTND),.clk(clk_div_top),.pb_1pulse(down));
     wire debounce_BTNL;
-    debounce l_debounce(.pb_debounced(debounce_BTNL),.pb(BTNL),.clk(clk));
+    debounce _l_debounce(.pb_debounced(debounce_BTNL),.pb(BTNL),.clk(clk));
     wire left;
-    onepulse l_onepulse(.pb_debounced(debounce_BTNL),.clk(clk_div_top),.pb_1pulse(left));
+    onepulse _l_onepulse(.pb_debounced(debounce_BTNL),.clk(clk_div_top),.pb_1pulse(left));
 
     //mouse
-    wire on_board;
+    wire on_board;//mouse is inside the board or not
     wire left_click;
     wire right_click;
-    wire [2:0] mouse_position_x;
-    wire [2:0] mouse_position_y;
-    mouse_control mouse(clk,rst,on_board,left_click,right_click,mouse_position_x,mouse_position_y);
+    wire [2:0] mouse_position_x;//mouse's postion_x on board
+    wire [2:0] mouse_position_y;//mouse's postion_y on board
+    mouse_control _mouse(clk,rst,on_board,left_click,right_click,mouse_position_x,mouse_position_y);
+
+    //rst
+    wire [2:0] rst_p1_position_x;//p1 initial postion_x on board
+    wire [2:0] rst_p1_position_y;//p1 initial postion_y on board
+    wire[97:0] rst_board;
+    reset _reset(clk,rst,rst_p1_position_x,rst_p1_position_y,rst_board);
 
     //IDLE  state: prepare for the game
     //P1ACK state: ready for p1's action
@@ -71,41 +77,30 @@ module lab5 (
     end
 
     //game_board
-    //3'b000 => empty
-    //3'b001 => player
-    //3'b010 => star
-    //3'b011 => obstacle
-    //3'b100 => pre_obstacle
-    //3'b101 => bomb
-    //3'b110 => explode
-    reg [146:0] cur_board = { 3'b000, 3'b000, 3'b000, 3'b011, 3'b011, 3'b010, 3'b000, 
-                              3'b000, 3'b011, 3'b010, 3'b000, 3'b000, 3'b000, 3'b000, 
-                              3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000,
-                              3'b011, 3'b000, 3'b000, 3'b000, 3'b011, 3'b000, 3'b001, 
-                              3'b000, 3'b000, 3'b011, 3'b000, 3'b000, 3'b000, 3'b011,
-                              3'b010, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 
-                              3'b000, 3'b000, 3'b000, 3'b011, 3'b010, 3'b000, 3'b000};
-    reg [146:0] nex_board = { 3'b000, 3'b000, 3'b000, 3'b011, 3'b011, 3'b010, 3'b000, 
-                              3'b000, 3'b011, 3'b010, 3'b000, 3'b000, 3'b000, 3'b000, 
-                              3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000,
-                              3'b011, 3'b000, 3'b000, 3'b000, 3'b011, 3'b000, 3'b001, 
-                              3'b000, 3'b000, 3'b011, 3'b000, 3'b000, 3'b000, 3'b011,
-                              3'b010, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 
-                              3'b000, 3'b000, 3'b000, 3'b011, 3'b010, 3'b000, 3'b000};
-    reg [146:0] rst_board = { 3'b000, 3'b000, 3'b000, 3'b011, 3'b011, 3'b010, 3'b000, 
-                              3'b000, 3'b011, 3'b010, 3'b000, 3'b000, 3'b000, 3'b000, 
-                              3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000,
-                              3'b011, 3'b000, 3'b000, 3'b000, 3'b011, 3'b000, 3'b001, 
-                              3'b000, 3'b000, 3'b011, 3'b000, 3'b000, 3'b000, 3'b011,
-                              3'b010, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 3'b000, 
-                              3'b000, 3'b000, 3'b000, 3'b011, 3'b010, 3'b000, 3'b000};
+    //2'b00 => empty
+    //2'b01 => star
+    //2'b10 => obstacle
+    //2'b11 => pre_obstacle
+    reg [97:0] cur_board;
+    reg [97:0] nex_board;
+    reg [97:0] tmp_board = { 2'b00, 2'b00, 2'b00, 2'b01, 2'b00, 2'b00, 2'b00, 
+                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
+                             2'b01, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
+                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
+                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
+                             2'b00, 2'b01, 2'b00, 2'b00, 2'b00, 2'b01, 2'b00,
+                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
     //main block
     reg [1:0] heart = 3;//p1 health(0 p2 win)
     reg [1:0] stars = 0;//p1 star(3 p1 win)
-    reg [3:0] stars_taked = 0;//which star is taken(4 bit represent 4 stars on the board)
+    reg [3:0] stars_taked = 0;//each bit represent stars taken or not
     reg [1:0] direc = 0;//0 => up, 1 => right, 2 => down, 3 => left
+    reg [2:0] p1_position_x = 0;//p1 position_x
+    reg [2:0] p1_position_y = 0;//p1 position_y
     reg bomb_exist = 0;//there is a bomb or not
+    reg [2:0] bomb_position_x = 0;//bomb position_x
+    reg [2:0] bomb_position_y = 0;//bomb position_y
     reg [2:0] next_move = 0;//next_exe:0~4 => p1move, 5 => p1bomb, 6 => p2shoot, 7 => p2setstone
     always @(*) begin
         case(state)
@@ -113,10 +108,16 @@ module lab5 (
             IDLE   :begin 
                 heart = 3;
                 stars = 0;
+                stars_taked = 0;
                 direc = 0;
+                p1_position_x = rst_p1_position_x;
+                p1_position_y = rst_p1_position_y;
                 bomb_exist = 0;
-                cur_board = rst_board;
-                nex_board = rst_board;
+                bomb_position_x = rst_p1_position_x;
+                bomb_position_y = rst_p1_position_y;
+                next_move = 0;
+                cur_board = tmp_board;
+                nex_board = tmp_board;
                 next_state = P1ACK;
             end
             //waiting p1 action
