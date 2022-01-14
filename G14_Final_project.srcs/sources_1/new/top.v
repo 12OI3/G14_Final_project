@@ -83,13 +83,6 @@ module Top (
     //2'b11 => pre_obstacle
     reg [97:0] cur_board;
     reg [97:0] nex_board;
-    reg [97:0] tmp_board = { 2'b00, 2'b00, 2'b00, 2'b01, 2'b00, 2'b00, 2'b00, 
-                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
-                             2'b01, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
-                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
-                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00,
-                             2'b00, 2'b01, 2'b00, 2'b00, 2'b00, 2'b01, 2'b00,
-                             2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00, 2'b00};
 
     //main block
     reg [1:0] heart = 3;//p1 health(0 p2 win)
@@ -116,8 +109,8 @@ module Top (
                 bomb_position_x = rst_p1_position_x;
                 bomb_position_y = rst_p1_position_y;
                 next_move = 0;
-                cur_board = tmp_board;
-                nex_board = tmp_board;
+                cur_board = rst_board;
+                nex_board = rst_board;
                 next_state = P1ACK;
             end
             //waiting p1 action
