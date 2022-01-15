@@ -6,6 +6,13 @@ module Top (
     input BTNR,
     input BTND,
     input BTNL,
+    inout PS2_CLK,
+    inout PS2_DATA,
+    output [3:0] vgaRed,
+    output [3:0] vgaGreen, 
+    output [3:0] vgaBlue,
+    output hsync, 
+    output vsync,
     output reg [15:0] LED,
     output [3:0] DIGIT,
     output [6:0] DISPLAY
@@ -402,4 +409,5 @@ module Top (
         endcase
     end
 
+    screen_control _screen_control (clk,rst,cur_board, heart,stars,disable_direction, direc,PS2_CLK,PS2_DATA,vgaRed, vgaGreen,vgaBlue,hsync,vsync);
 endmodule
