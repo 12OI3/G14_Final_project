@@ -6,8 +6,6 @@ module screen_control (
     input [1:0] stars,
     input disable_direction,
     input direc,
-    inout PS2_CLK,
-    inout PS2_DATA,
     output [3:0] vgaRed,
     output [3:0] vgaGreen, 
     output [3:0] vgaBlue,

@@ -49,7 +49,7 @@ module Top (
     wire right_click;
     wire [2:0] mouse_position_x;//mouse's postion_x on board
     wire [2:0] mouse_position_y;//mouse's postion_y on board
-    mouse_control _mouse(clk,rst,on_board,left_click,right_click,mouse_position_x,mouse_position_y);
+    mouse_control _mouse(clk,rst,PS2_CLK,PS2_DATA,on_board,left_click,right_click,mouse_position_x,mouse_position_y);
 
     //IDLE  state: prepare for the game
     //P1ACK state: ready for p1's action
@@ -409,5 +409,6 @@ module Top (
         endcase
     end
 
-    screen_control _screen_control (clk,rst,cur_board, heart,stars,disable_direction, direc,PS2_CLK,PS2_DATA,vgaRed, vgaGreen,vgaBlue,hsync,vsync);
+    //screen
+    screen_control _screen_control (clk,rst,cur_board,heart,stars,disable_direction,direc,vgaRed, vgaGreen,vgaBlue,hsync,vsync);
 endmodule
