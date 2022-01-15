@@ -21,6 +21,9 @@ module Top (
     //clk for general
     wire clk_div_top;
     clock_divider #(20) _top_clock_divider(clk,clk_div_top);//20
+    //clk for led
+    wire clk_div_led;
+    clock_divider #(26) _led_clock_divider(clk,clk_div_led);//26
     //button onepulse & debounce
     wire debounce_BTNC;
     debounce _c_debounce(.pb_debounced(debounce_BTNC),.pb(BTNC),.clk(clk));
@@ -411,4 +414,6 @@ module Top (
 
     //screen
     screen_control _screen_control (clk,rst,cur_board,heart,stars,disable_direction,direc,vgaRed, vgaGreen,vgaBlue,hsync,vsync);
+    //led
+    led_controler _led_controler (clk_div_led,rst,bomb_exist,LED);
 endmodule
