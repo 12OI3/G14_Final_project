@@ -13,7 +13,7 @@ module Top (
     output [3:0] vgaBlue,
     output hsync, 
     output vsync,
-    output reg [15:0] LED,
+    output [15:0] LED,
     output [3:0] DIGIT,
     output [6:0] DISPLAY
     );
@@ -52,7 +52,29 @@ module Top (
     wire right_click;
     wire [2:0] mouse_position_x;//mouse's postion_x on board
     wire [2:0] mouse_position_y;//mouse's postion_y on board
-    mouse_control _mouse(clk,rst,PS2_CLK,PS2_DATA,on_board,left_click,right_click,mouse_position_x,mouse_position_y);
+
+    //mouse and screen control
+    mouse_screen_control _mouse_screen(
+        .clk(clk),
+        .rst(rst),
+        .game_board(cur_board),
+        .heart(heart),
+        .stars(stars),
+        .disable_direction(disable_direction),
+        .direc(direc),
+        .vgaRed(vgaRed),
+        .vgaGreen(vgaGreen),
+        .vgaBlue(vgaBlue),
+        .hsync(hsync),
+        .vsync(vsync),
+        .on_board(on_board),
+        .left_click(left_click),
+        .right_click(right_click),
+        .position_x(mouse_position_x),
+        .position_y(mouse_position_y),
+        .PS2_CLK(PS2_CLK),
+        .PS2_DATA(PS2_DATA)
+    );
 
     //IDLE  state: prepare for the game
     //P1ACK state: ready for p1's action
@@ -412,8 +434,6 @@ module Top (
         endcase
     end
 
-    //screen
-    screen_control _screen_control (clk,rst,cur_board,heart,stars,disable_direction,direc,vgaRed, vgaGreen,vgaBlue,hsync,vsync);
     //led
     led_controler _led_controler (clk_div_led,rst,bomb_exist,LED);
 endmodule
