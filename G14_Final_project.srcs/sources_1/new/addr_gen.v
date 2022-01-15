@@ -52,7 +52,7 @@ module addr_gen (
             cover_num = tileX + 8;
         end
         else if(tileX > 0 && tileX < 8 && tileY > 0 && tileY < 8) begin
-            case(game_board[((tileY-1)*7 + (tileX-1))*2+:1])
+            case(game_board[((tileY-1)*7 + (tileX-1))*2+:2])
                 2'b00: begin
                     cover_num = EMPTY;
                 end
