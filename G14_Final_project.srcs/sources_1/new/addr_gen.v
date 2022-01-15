@@ -16,14 +16,14 @@ module addr_gen (
 
     // 2 to 8 for 1-7
     // 9 to 15 for A-G
-    parameter [4:0] EMPTY = 5'd16;
+    parameter [4:0] EMPTY_TILE = 5'd16;
     parameter [4:0] STAR_TILE = 5'd17;
     parameter [4:0] OBSTACLE = 5'd18;
     parameter [4:0] EXPLODE = 5'd19;
     parameter [4:0] UP = 5'd20;
-    parameter [4:0] DOWN = 5'd21;
-    parameter [4:0] LEFT = 5'd22;
-    parameter [4:0] RIGHT = 5'd23;
+    parameter [4:0] RIGHT = 5'd21;
+    parameter [4:0] DOWN = 5'd22;
+    parameter [4:0] LEFT = 5'd23;
     parameter [4:0] DISABLE_DIR = 5'd24;
     parameter [4:0] HEART = 5'd25;
     parameter [4:0] STAR_UI = 5'd26;
@@ -52,9 +52,9 @@ module addr_gen (
             cover_num = tileX + 8;
         end
         else if(tileX > 0 && tileX < 8 && tileY > 0 && tileY < 8) begin
-            case(game_board[((tileY-1)*7 + (tileX-1))*2+:2])
+            case(game_board[((tileX-1)*7 + (tileY-1))*2+:2])
                 2'b00: begin
-                    cover_num = EMPTY;
+                    cover_num = EMPTY_TILE;
                 end
                 2'b01: begin
                     cover_num = STAR_TILE;
@@ -72,7 +72,7 @@ module addr_gen (
                 cover_num = HEART;
             end
             else begin
-                cover_num = EMPTY;
+                cover_num = NONE;
             end
         end
         else if(tileX > 9 && tileY == 2) begin // star
@@ -80,7 +80,7 @@ module addr_gen (
                 cover_num = STAR_UI;
             end
             else begin
-                cover_num = EMPTY;
+                cover_num = NONE;
             end
         end
         else if(tileX == 11 && tileY == 5) begin // direction
@@ -90,9 +90,9 @@ module addr_gen (
             else begin
                 case(direc)
                     2'b00: cover_num = UP;
-                    2'b01: cover_num = DOWN;
-                    2'b10: cover_num = LEFT;
-                    2'b11: cover_num = RIGHT;
+                    2'b01: cover_num = RIGHT;
+                    2'b10: cover_num = DOWN;
+                    2'b11: cover_num = LEFT;
                 endcase
             end
         end
