@@ -2,7 +2,8 @@
 module mouse_screen_control ( 
     input clk,
     input rst,
-    input [97:0] game_board,
+    input [2:0] state,
+    input [0:97] game_board,
     input [1:0] heart,
     input [1:0] stars,
     input disable_direction,
@@ -61,6 +62,7 @@ module mouse_screen_control (
         .v_cnt(v_cnt), 
         .clk_slow(clk26), 
         .game_board(game_board),
+        .state(state),
         .heart(heart),
         .stars(stars),
         .disable_direction(disable_direction),
@@ -82,19 +84,19 @@ module mouse_screen_control (
 
     always @(*) begin
         if(tileX > 0 && tileX < 8) begin
-            position_x = tileX - 1;
+            position_y = tileX - 1;
         end
         else begin
-            position_x = 3'd7;
+            position_y = 3'd7;
         end
     end
 
     always @(*) begin
         if(tileY > 0 && tileY < 8) begin
-            position_y = tileY - 1;
+            position_x = tileY - 1;
         end
         else begin
-            position_y = 3'd7;
+            position_x = 3'd7;
         end
     end
 

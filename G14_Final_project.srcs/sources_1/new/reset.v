@@ -1,9 +1,9 @@
 module reset ( 
     input clk,
     input rst,
-    output reg rst_p1_position_x,
-    output reg rst_p1_position_y,
-    output reg [97:0] rst_board,
+    output reg [2:0] rst_p1_position_x,
+    output reg [2:0] rst_p1_position_y,
+    output reg [0:97] rst_board,
     output reg [2:0] s0_star_x,
     output reg [2:0] s0_star_y,
     output reg [2:0] s1_star_x,

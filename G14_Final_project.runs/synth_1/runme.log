@@ -10,15 +10,17 @@
     ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 
 source Top.tcl -notrace
+create_project: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1127.922 ; gain = 10.324
 Command: synth_design -top Top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 22404
+INFO: [Synth 8-7075] Helper process launched with PID 23332
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1128.004 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 1127.922 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Top' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:1]
 INFO: [Synth 8-6157] synthesizing module 'clock_divider' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
@@ -33,32 +35,583 @@ INFO: [Synth 8-6157] synthesizing module 'onepulse' [D:/File/NTHU/2A/verilog/G14
 INFO: [Synth 8-6155] done synthesizing module 'onepulse' (3#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/onepulse.v:1]
 INFO: [Synth 8-6157] synthesizing module 'reset' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/reset.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'reset' (4#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/reset.v:1]
-WARNING: [Synth 8-689] width (3) of port connection 'rst_p1_position_x' does not match port width (1) of module 'reset' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:123]
-WARNING: [Synth 8-689] width (3) of port connection 'rst_p1_position_y' does not match port width (1) of module 'reset' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:123]
 INFO: [Synth 8-6157] synthesizing module 'led_controler' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/led_controler.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'led_controler' (5#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/led_controler.v:1]
 INFO: [Synth 8-6157] synthesizing module 'seven_segment_controler' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/seven_segment_controler.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized1' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+	Parameter n bound to: 17 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized1' (5#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+INFO: [Synth 8-226] default block is never used [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/seven_segment_controler.v:97]
 INFO: [Synth 8-6155] done synthesizing module 'seven_segment_controler' (6#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/seven_segment_controler.v:1]
 INFO: [Synth 8-6157] synthesizing module 'mouse_screen_control' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_screen_conrtol.v:2]
-INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized1' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized2' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
 	Parameter n bound to: 2 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized1' (6#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized2' (6#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
 INFO: [Synth 8-6157] synthesizing module 'vga_controller' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/vga.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (7#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/vga.v:6]
 INFO: [Synth 8-6157] synthesizing module 'mouse_controller' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:1]
-ERROR: [Synth 8-439] module 'MouseCtl' not found [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:27]
-	Parameter SYSCLK_FREQUENCY_HZ bound to: 32'sb00000101111101011110000100000000 
-	Parameter CHECK_PERIOD_MS bound to: 32'sb00000000000000000000000111110100 
-	Parameter TIMEOUT_PERIOD_MS bound to: 32'sb00000000000000000000000001100100 
-ERROR: [Synth 8-6156] failed synthesizing module 'mouse_controller' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:1]
-ERROR: [Synth 8-6156] failed synthesizing module 'mouse_screen_control' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_screen_conrtol.v:2]
-ERROR: [Synth 8-6156] failed synthesizing module 'Top' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:1]
+INFO: [Synth 8-638] synthesizing module 'MouseCtl' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseCtl.vhd:208]
+	Parameter SYSCLK_FREQUENCY_HZ bound to: 100000000 - type: integer 
+	Parameter CHECK_PERIOD_MS bound to: 500 - type: integer 
+	Parameter TIMEOUT_PERIOD_MS bound to: 100 - type: integer 
+INFO: [Synth 8-3491] module 'Ps2Interface' declared at 'D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/Ps2Interface.vhd:152' bound to instance 'Inst_Ps2Interface' of component 'Ps2Interface' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseCtl.vhd:370]
+INFO: [Synth 8-638] synthesizing module 'Ps2Interface' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/Ps2Interface.vhd:180]
+INFO: [Synth 8-256] done synthesizing module 'Ps2Interface' (8#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/Ps2Interface.vhd:180]
+INFO: [Synth 8-256] done synthesizing module 'MouseCtl' (9#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseCtl.vhd:208]
+WARNING: [Synth 8-689] width (10) of port connection 'xpos' does not match port width (12) of module 'MouseCtl' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:30]
+WARNING: [Synth 8-689] width (10) of port connection 'ypos' does not match port width (12) of module 'MouseCtl' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:31]
+INFO: [Synth 8-638] synthesizing module 'MouseDisplay' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseDisplay.vhd:129]
+WARNING: [Synth 8-614] signal 'ypos' is read in the process but is not in the sensitivity list [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseDisplay.vhd:197]
+INFO: [Synth 8-256] done synthesizing module 'MouseDisplay' (10#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseDisplay.vhd:129]
+INFO: [Synth 8-6155] done synthesizing module 'mouse_controller' (11#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:1]
+INFO: [Synth 8-6157] synthesizing module 'addr_gen' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/addr_gen.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'addr_gen' (12#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/addr_gen.v:3]
+INFO: [Synth 8-6157] synthesizing module 'pixel_gen' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/pixel_gen.v:3]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (13#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_1' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_1' (14#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_2' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_2_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_2' (15#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_2_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_3' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_3_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_3' (16#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_3_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_4' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_4_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_4' (17#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_4_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_5' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_5_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_5' (18#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_5_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_6' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_6_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_6' (19#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_6_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_7' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_7_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_7' (20#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_7_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_8' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_8_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_8' (21#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_8_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_9' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_9_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_9' (22#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_9_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_10' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_10_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_10' (23#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_10_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_11' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_11_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_11' (24#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_11_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_12' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_12_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_12' (25#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_12_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_13' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_13_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_13' (26#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_13_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_14' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_14_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_14' (27#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_14_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_15' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_15_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_15' (28#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_15_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_16' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_16_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_16' (29#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_16_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_17' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_17_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_17' (30#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_17_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_18' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_18_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_18' (31#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_18_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_19' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_19_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_19' (32#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_19_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_20' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_20_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_20' (33#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_20_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_21' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_21_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_21' (34#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_21_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_22' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_22_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_22' (35#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_22_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_23' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_23_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_23' (36#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_23_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_24' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_24_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_24' (37#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_24_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_25' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_25_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_25' (38#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_25_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_26' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_26_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_26' (39#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_26_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_27' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_27_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_27' (40#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/.Xil/Vivado-11060-DESKTOP-HK49RQQ/realtime/blk_mem_gen_27_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'pixel_gen' (41#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/pixel_gen.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'mouse_screen_control' (42#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_screen_conrtol.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'Top' (43#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:1]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1128.004 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1127.922 ; gain = 0.000
 ---------------------------------------------------------------------------------
-synthesize failed
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1127.922 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1127.922 ; gain = 0.000
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.073 . Memory (MB): peak = 1127.922 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_0_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_0_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1/blk_mem_gen_1_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_1_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1/blk_mem_gen_1_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_1_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2/blk_mem_gen_2_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_2_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2/blk_mem_gen_2_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_2_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_3/blk_mem_gen_3/blk_mem_gen_3_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_3_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_3/blk_mem_gen_3/blk_mem_gen_3_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_3_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_4/blk_mem_gen_4/blk_mem_gen_4_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_4_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_4/blk_mem_gen_4/blk_mem_gen_4_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_4_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_5/blk_mem_gen_5/blk_mem_gen_5_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_5_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_5/blk_mem_gen_5/blk_mem_gen_5_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_5_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_6/blk_mem_gen_6/blk_mem_gen_6_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_6_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_6/blk_mem_gen_6/blk_mem_gen_6_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_6_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_7/blk_mem_gen_7/blk_mem_gen_7_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_7_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_7/blk_mem_gen_7/blk_mem_gen_7_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_7_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_8_1/blk_mem_gen_8/blk_mem_gen_8_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_8_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_8_1/blk_mem_gen_8/blk_mem_gen_8_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_8_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_9/blk_mem_gen_9/blk_mem_gen_9_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_9_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_9/blk_mem_gen_9/blk_mem_gen_9_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_9_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_10/blk_mem_gen_10/blk_mem_gen_10_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_10_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_10/blk_mem_gen_10/blk_mem_gen_10_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_10_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_11/blk_mem_gen_11/blk_mem_gen_11_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_11_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_11/blk_mem_gen_11/blk_mem_gen_11_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_11_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_12/blk_mem_gen_12/blk_mem_gen_12_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_12_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_12/blk_mem_gen_12/blk_mem_gen_12_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_12_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_13/blk_mem_gen_13/blk_mem_gen_13_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_13_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_13/blk_mem_gen_13/blk_mem_gen_13_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_13_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_14/blk_mem_gen_14/blk_mem_gen_14_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_14_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_14/blk_mem_gen_14/blk_mem_gen_14_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_14_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_15/blk_mem_gen_15/blk_mem_gen_15_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_15_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_15/blk_mem_gen_15/blk_mem_gen_15_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_15_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_16/blk_mem_gen_16/blk_mem_gen_16_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_16_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_16/blk_mem_gen_16/blk_mem_gen_16_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_16_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_17/blk_mem_gen_17/blk_mem_gen_17_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_17_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_17/blk_mem_gen_17/blk_mem_gen_17_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_17_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_18/blk_mem_gen_18/blk_mem_gen_18_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_18_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_18/blk_mem_gen_18/blk_mem_gen_18_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_18_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_19/blk_mem_gen_19/blk_mem_gen_19_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_19_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_19/blk_mem_gen_19/blk_mem_gen_19_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_19_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_20/blk_mem_gen_20/blk_mem_gen_20_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_20_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_20/blk_mem_gen_20/blk_mem_gen_20_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_20_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_21/blk_mem_gen_21/blk_mem_gen_21_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_21_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_21/blk_mem_gen_21/blk_mem_gen_21_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_21_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_22/blk_mem_gen_22/blk_mem_gen_22_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_22_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_22/blk_mem_gen_22/blk_mem_gen_22_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_22_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_23/blk_mem_gen_23/blk_mem_gen_23_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_23_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_23/blk_mem_gen_23/blk_mem_gen_23_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_23_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_24/blk_mem_gen_24/blk_mem_gen_24_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_24_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_24/blk_mem_gen_24/blk_mem_gen_24_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_24_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_25/blk_mem_gen_25/blk_mem_gen_25_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_25_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_25/blk_mem_gen_25/blk_mem_gen_25_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_25_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_26/blk_mem_gen_26/blk_mem_gen_26_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_26_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_26/blk_mem_gen_26/blk_mem_gen_26_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_26_inst'
+Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_27/blk_mem_gen_27/blk_mem_gen_27_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_27_inst'
+Finished Parsing XDC File [d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_27/blk_mem_gen_27/blk_mem_gen_27_in_context.xdc] for cell '_mouse_screen/pixel_gen_inst/blk_mem_gen_27_inst'
+Parsing XDC File [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/constrs_1/new/Basys3_Master.xdc]
+Finished Parsing XDC File [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/constrs_1/new/Basys3_Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/constrs_1/new/Basys3_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1156.293 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 1156.293 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1156.293 ; gain = 28.371
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1156.293 ; gain = 28.371
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_0_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_1_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_2_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_3_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_4_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_5_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_6_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_7_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_8_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_9_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_10_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_11_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_12_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_13_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_14_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_15_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_16_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_17_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_18_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_19_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_20_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_21_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_22_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_23_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_24_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_25_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_26_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for _mouse_screen/pixel_gen_inst/blk_mem_gen_27_inst. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1156.293 ; gain = 28.371
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'digit_reg' in module 'seven_segment_controler'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'Ps2Interface'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'MouseCtl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE3 |                            00001 |                             1111
+*
+                  iSTATE |                            00010 |                             1110
+                 iSTATE0 |                            00100 |                             1101
+                 iSTATE1 |                            01000 |                             1011
+                 iSTATE2 |                            10000 |                             0111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'digit_reg' using encoding 'one-hot' in module 'seven_segment_controler'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                00000000000000001 |                            00000
+            rx_down_edge |                00000000000000010 |                            00011
+                rx_clk_l |                00000000000000100 |                            00010
+                rx_clk_h |                00000000000001000 |                            00001
+         rx_error_parity |                00000000000010000 |                            00100
+           rx_data_ready |                00000000000100000 |                            00101
+          tx_force_clk_l |                00000000001000000 |                            00110
+      tx_bring_data_down |                00000000010000000 |                            00111
+          tx_release_clk |                00000000100000000 |                            01000
+ tx_first_wait_down_edge |                00000001000000000 |                            01001
+                tx_clk_l |                00000010000000000 |                            01010
+         tx_wait_up_edge |                00000100000000000 |                            01011
+tx_wait_up_edge_before_ack |                00001000000000000 |                            01101
+             tx_wait_ack |                00010000000000000 |                            01110
+         tx_received_ack |                00100000000000000 |                            01111
+         tx_error_no_ack |                01000000000000000 |                            10000
+                tx_clk_h |                10000000000000000 |                            01100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'Ps2Interface'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   reset | 0000000000000000000000000000000000001 |                           000000
+          reset_wait_ack | 0000000000000000000000000000000000010 |                           000001
+reset_wait_bat_completion | 0000000000000000000000000000000000100 |                           000010
+           reset_wait_id | 0000000000000000000000000000000001000 |                           000011
+reset_set_sample_rate_200 | 0000000000000000000000000000000010000 |                           000100
+reset_set_sample_rate_200_wait_ack | 0000000000000000000000000000000100000 |                           000101
+reset_send_sample_rate_200 | 0000000000000000000000000000001000000 |                           000110
+reset_send_sample_rate_200_wait_ack | 0000000000000000000000000000010000000 |                           000111
+reset_set_sample_rate_100 | 0000000000000000000000000000100000000 |                           001000
+reset_set_sample_rate_100_wait_ack | 0000000000000000000000000001000000000 |                           001001
+reset_send_sample_rate_100 | 0000000000000000000000000010000000000 |                           001010
+reset_send_sample_rate_100_wait_ack | 0000000000000000000000000100000000000 |                           001011
+reset_set_sample_rate_80 | 0000000000000000000000001000000000000 |                           001100
+reset_set_sample_rate_80_wait_ack | 0000000000000000000000010000000000000 |                           001101
+reset_send_sample_rate_80 | 0000000000000000000000100000000000000 |                           001110
+reset_send_sample_rate_80_wait_ack | 0000000000000000000001000000000000000 |                           001111
+           reset_read_id | 0000000000000000000010000000000000000 |                           010000
+  reset_read_id_wait_ack | 0000000000000000000100000000000000000 |                           010001
+   reset_read_id_wait_id | 0000000000000000001000000000000000000 |                           010010
+    reset_set_resolution | 0000000000000000010000000000000000000 |                           010011
+reset_set_resolution_wait_ack | 0000000000000000100000000000000000000 |                           010100
+   reset_send_resolution | 0000000000000001000000000000000000000 |                           010101
+reset_send_resolution_wait_ack | 0000000000000010000000000000000000000 |                           010110
+reset_set_sample_rate_40 | 0000000000000100000000000000000000000 |                           010111
+reset_set_sample_rate_40_wait_ack | 0000000000001000000000000000000000000 |                           011000
+reset_send_sample_rate_40 | 0000000000010000000000000000000000000 |                           011001
+reset_send_sample_rate_40_wait_ack | 0000000000100000000000000000000000000 |                           011010
+  reset_enable_reporting | 0000000001000000000000000000000000000 |                           011011
+reset_enable_reporting_wait_ack | 0000000010000000000000000000000000000 |                           011100
+             read_byte_1 | 0000000100000000000000000000000000000 |                           011101
+             read_byte_2 | 0000001000000000000000000000000000000 |                           011110
+             read_byte_3 | 0000010000000000000000000000000000000 |                           011111
+             read_byte_4 | 0000100000000000000000000000000000000 |                           100000
+          mark_new_event | 0001000000000000000000000000000000000 |                           100100
+           check_read_id | 0010000000000000000000000000000000000 |                           100001
+  check_read_id_wait_ack | 0100000000000000000000000000000000000 |                           100010
+   check_read_id_wait_id | 1000000000000000000000000000000000000 |                           100011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'MouseCtl'
+WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:174]
+WARNING: [Synth 8-327] inferring latch for variable 'nex_board_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:172]
+WARNING: [Synth 8-327] inferring latch for variable 'next_heart_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:158]
+WARNING: [Synth 8-327] inferring latch for variable 'next_stars_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:159]
+WARNING: [Synth 8-327] inferring latch for variable 'next_disable_direction_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:161]
+WARNING: [Synth 8-327] inferring latch for variable 'next_direc_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:162]
+WARNING: [Synth 8-327] inferring latch for variable 'next_bomb_exist_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:165]
+WARNING: [Synth 8-327] inferring latch for variable 'next_p1_position_x_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:163]
+WARNING: [Synth 8-327] inferring latch for variable 'next_p1_position_y_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:164]
+WARNING: [Synth 8-327] inferring latch for variable 'next_stars_taked_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:160]
+WARNING: [Synth 8-327] inferring latch for variable 'next_move_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:171]
+WARNING: [Synth 8-327] inferring latch for variable 'next_animation_counter_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:168]
+WARNING: [Synth 8-327] inferring latch for variable 'bomb_position_y_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:167]
+WARNING: [Synth 8-327] inferring latch for variable 'bomb_position_x_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:166]
+WARNING: [Synth 8-327] inferring latch for variable 'ready_obstacle_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:170]
+WARNING: [Synth 8-327] inferring latch for variable 'last_mouse_position_y_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:363]
+WARNING: [Synth 8-327] inferring latch for variable 'last_mouse_position_x_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:363]
+WARNING: [Synth 8-327] inferring latch for variable 'pre_ready_obstacle_reg' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:169]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1156.293 ; gain = 28.371
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 2     
+	   2 Input   26 Bit       Adders := 3     
+	   2 Input   24 Bit       Adders := 1     
+	   2 Input   20 Bit       Adders := 1     
+	   2 Input   17 Bit       Adders := 1     
+	   3 Input   13 Bit       Adders := 2     
+	   2 Input   12 Bit       Adders := 7     
+	   2 Input   11 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 1     
+	   3 Input    6 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 6     
+	   3 Input    4 Bit       Adders := 2     
+	   2 Input    3 Bit       Adders := 4     
+	   2 Input    2 Bit       Adders := 3     
++---XORs : 
+	   3 Input      5 Bit         XORs := 1     
++---Registers : 
+	               98 Bit    Registers := 1     
+	               26 Bit    Registers := 1     
+	               24 Bit    Registers := 1     
+	               12 Bit    Registers := 6     
+	               11 Bit    Registers := 2     
+	               10 Bit    Registers := 2     
+	                8 Bit    Registers := 5     
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 12    
+	                3 Bit    Registers := 4     
+	                2 Bit    Registers := 5     
+	                1 Bit    Registers := 55    
++---Muxes : 
+	   2 Input   98 Bit        Muxes := 17    
+	   8 Input   98 Bit        Muxes := 1     
+	  37 Input   37 Bit        Muxes := 1     
+	   2 Input   37 Bit        Muxes := 69    
+	   2 Input   26 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 1     
+	  17 Input   17 Bit        Muxes := 1     
+	   2 Input   17 Bit        Muxes := 18    
+	   2 Input   16 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 14    
+	   2 Input   11 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 2     
+	   2 Input    9 Bit        Muxes := 2     
+	  37 Input    8 Bit        Muxes := 3     
+	   2 Input    8 Bit        Muxes := 1     
+	   8 Input    8 Bit        Muxes := 1     
+	   5 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 10    
+	   3 Input    5 Bit        Muxes := 1     
+	   4 Input    5 Bit        Muxes := 1     
+	   5 Input    4 Bit        Muxes := 4     
+	   3 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 8     
+	  37 Input    4 Bit        Muxes := 1     
+	   8 Input    4 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 13    
+	   6 Input    3 Bit        Muxes := 2     
+	   3 Input    3 Bit        Muxes := 1     
+	   8 Input    3 Bit        Muxes := 5     
+	   3 Input    2 Bit        Muxes := 1     
+	   8 Input    2 Bit        Muxes := 3     
+	   2 Input    2 Bit        Muxes := 3     
+	   5 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 24    
+	  17 Input    1 Bit        Muxes := 4     
+	  37 Input    1 Bit        Muxes := 20    
+	   8 Input    1 Bit        Muxes := 16    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++-----------------+--------------------------------+---------------+----------------+
+|Module Name      | RTL Object                     | Depth x Width | Implemented As | 
++-----------------+--------------------------------+---------------+----------------+
+|MouseDisplay     | mouserom[0]                    | 256x2         | LUT            | 
+|mouse_controller | mouse_display_inst/mouserom[0] | 256x2         | LUT            | 
++-----------------+--------------------------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+---------------+----------+
+|      |BlackBox name  |Instances |
++------+---------------+----------+
+|1     |blk_mem_gen_0  |         1|
+|2     |blk_mem_gen_1  |         1|
+|3     |blk_mem_gen_2  |         1|
+|4     |blk_mem_gen_3  |         1|
+|5     |blk_mem_gen_4  |         1|
+|6     |blk_mem_gen_5  |         1|
+|7     |blk_mem_gen_6  |         1|
+|8     |blk_mem_gen_7  |         1|
+|9     |blk_mem_gen_8  |         1|
+|10    |blk_mem_gen_9  |         1|
+|11    |blk_mem_gen_10 |         1|
+|12    |blk_mem_gen_11 |         1|
+|13    |blk_mem_gen_12 |         1|
+|14    |blk_mem_gen_13 |         1|
+|15    |blk_mem_gen_14 |         1|
+|16    |blk_mem_gen_15 |         1|
+|17    |blk_mem_gen_16 |         1|
+|18    |blk_mem_gen_17 |         1|
+|19    |blk_mem_gen_18 |         1|
+|20    |blk_mem_gen_19 |         1|
+|21    |blk_mem_gen_20 |         1|
+|22    |blk_mem_gen_21 |         1|
+|23    |blk_mem_gen_22 |         1|
+|24    |blk_mem_gen_23 |         1|
+|25    |blk_mem_gen_24 |         1|
+|26    |blk_mem_gen_25 |         1|
+|27    |blk_mem_gen_26 |         1|
+|28    |blk_mem_gen_27 |         1|
++------+---------------+----------+
+
+Report Cell Usage: 
++------+------------+------+
+|      |Cell        |Count |
++------+------------+------+
+|1     |blk_mem_gen |    28|
+|29    |BUFG        |     3|
+|30    |CARRY4      |   169|
+|31    |LUT1        |    45|
+|32    |LUT2        |   397|
+|33    |LUT3        |   347|
+|34    |LUT4        |   287|
+|35    |LUT5        |   371|
+|36    |LUT6        |  1348|
+|37    |MUXF7       |    96|
+|38    |MUXF8       |    10|
+|39    |FDCE        |   206|
+|40    |FDPE        |    14|
+|41    |FDRE        |   336|
+|42    |FDSE        |     2|
+|43    |LD          |   144|
+|44    |IBUF        |     7|
+|45    |IOBUF       |     2|
+|46    |OBUF        |    41|
++------+------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 18 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:00:43 . Memory (MB): peak = 1257.926 ; gain = 101.633
+Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1257.926 ; gain = 130.004
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.067 . Memory (MB): peak = 1259.156 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 421 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1262.777 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 146 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 2 instances
+  LD => LDCE: 144 instances
+
+Synth Design complete, checksum: 5d0b9a1
 INFO: [Common 17-83] Releasing license: Synthesis
-26 Infos, 2 Warnings, 0 Critical Warnings and 5 Errors encountered.
-synth_design failed
-ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
-INFO: [Common 17-206] Exiting Vivado at Sun Jan 16 13:06:46 2022...
+115 Infos, 21 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1262.777 ; gain = 134.855
+INFO: [Common 17-1381] The checkpoint 'D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/Top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Jan 16 19:55:39 2022...

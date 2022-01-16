@@ -5,5 +5,6 @@ module led_controler(
     output [15:0] led
     );
 
-    assign led = {bomb_exist?16'b1111111111111111:(clk?16'b1111111111111111:16'b0000000000000000)};
+    assign led = {bomb_exist?(clk?16'b1111111111111111:16'b0000000000000000):16'b1111111111111111};
+
 endmodule

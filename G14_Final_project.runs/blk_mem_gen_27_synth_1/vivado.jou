@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sun Jan 16 16:22:41 2022
+# Process ID: 10528
+# Current directory: D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/blk_mem_gen_27_synth_1
+# Command line: vivado.exe -log blk_mem_gen_27.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_gen_27.tcl
+# Log file: D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/blk_mem_gen_27_synth_1/blk_mem_gen_27.vds
+# Journal file: D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/blk_mem_gen_27_synth_1\vivado.jou
+#-----------------------------------------------------------
+source blk_mem_gen_27.tcl -notrace

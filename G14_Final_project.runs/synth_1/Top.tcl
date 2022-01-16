@@ -71,20 +71,52 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
+set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.cache/wt [current_project]
 set_property parent.project_path D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.xpr [current_project]
+set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_output_repo d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/ocean1.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/ocean2.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/1.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/2.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/3.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/4.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/5.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/6.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/7.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/A.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/B.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/C.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/D.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/E.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/F.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/G.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/empty.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/star.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/obstacle.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/explode.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/up.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/right.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/down.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/left.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/disable.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/heart.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/star_ui.coe
+add_files d:/File/NTHU/2A/verilog/G14_Final_project/asset/sub.coe
 read_verilog -library xil_defaultlib {
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/addr_gen.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v
@@ -99,6 +131,95 @@ read_verilog -library xil_defaultlib {
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/vga.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v
 }
+read_vhdl -library xil_defaultlib {
+  D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseCtl.vhd
+  D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/MouseDisplay.vhd
+  D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/Ps2Interface.vhd
+}
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_3/blk_mem_gen_3.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_3/blk_mem_gen_3_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_4/blk_mem_gen_4.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_4/blk_mem_gen_4_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_5/blk_mem_gen_5.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_5/blk_mem_gen_5_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_6/blk_mem_gen_6.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_6/blk_mem_gen_6_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_7/blk_mem_gen_7.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_7/blk_mem_gen_7_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_8/blk_mem_gen_8.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_8_1/blk_mem_gen_8_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_9/blk_mem_gen_9.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_9/blk_mem_gen_9_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_10/blk_mem_gen_10.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_10/blk_mem_gen_10_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_11/blk_mem_gen_11.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_11/blk_mem_gen_11_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_12/blk_mem_gen_12.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_12/blk_mem_gen_12_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_13/blk_mem_gen_13.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_13/blk_mem_gen_13_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_14/blk_mem_gen_14.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_14/blk_mem_gen_14_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_15/blk_mem_gen_15.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_15/blk_mem_gen_15_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_16/blk_mem_gen_16.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_16/blk_mem_gen_16_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_17/blk_mem_gen_17.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_17/blk_mem_gen_17_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_18/blk_mem_gen_18.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_18/blk_mem_gen_18_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_19/blk_mem_gen_19.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_19/blk_mem_gen_19_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_20/blk_mem_gen_20.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_20/blk_mem_gen_20_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_21/blk_mem_gen_21.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_21/blk_mem_gen_21_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_22/blk_mem_gen_22.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_22/blk_mem_gen_22_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_23/blk_mem_gen_23.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_23/blk_mem_gen_23_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_24/blk_mem_gen_24.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_24/blk_mem_gen_24_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_25/blk_mem_gen_25.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_25/blk_mem_gen_25_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_26/blk_mem_gen_26.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_26/blk_mem_gen_26_ooc.xdc]
+
+read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_27/blk_mem_gen_27.xci
+set_property used_in_implementation false [get_files -all d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.gen/sources_1/ip/blk_mem_gen_27/blk_mem_gen_27_ooc.xdc]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -108,6 +229,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/constrs_1/new/Basys3_Master.xdc
+set_property used_in_implementation false [get_files D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/constrs_1/new/Basys3_Master.xdc]
+
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 

@@ -4,7 +4,8 @@ module addr_gen (
     input [9:0] h_cnt,
     input [9:0] v_cnt,
     input clk_slow,
-    input [97:0] game_board,
+    input [0:97] game_board,
+    input [2:0] state,
     input [1:0] heart,
     input [1:0] stars,
     input disable_direction,
@@ -27,6 +28,7 @@ module addr_gen (
     parameter [4:0] DISABLE_DIR = 5'd24;
     parameter [4:0] HEART = 5'd25;
     parameter [4:0] STAR_UI = 5'd26;
+    parameter [4:0] SUB = 5'd27;
 
     parameter [4:0] NONE = 5'd31;
 
@@ -52,7 +54,7 @@ module addr_gen (
             cover_num = tileX + 8;
         end
         else if(tileX > 0 && tileX < 8 && tileY > 0 && tileY < 8) begin
-            case(game_board[((tileX-1)*7 + (tileY-1))*2+:2])
+            case({game_board[((tileY-1)*7 + (tileX-1))*2],game_board[((tileY-1)*7 + (tileX-1))*2+1]})
                 2'b00: begin
                     cover_num = EMPTY_TILE;
                 end
@@ -67,34 +69,64 @@ module addr_gen (
                 end
             endcase
         end
-        else if(tileX > 9 && tileY == 1) begin // heart
-            if(tileX - stars < 10) begin
+        else if(tileX > 7 && tileY == 1) begin // heart
+            if(tileX < 8 + heart) begin
                 cover_num = HEART;
             end
             else begin
                 cover_num = NONE;
             end
         end
-        else if(tileX > 9 && tileY == 2) begin // star
-            if(tileX - stars < 10) begin
+        else if(tileX > 7 && tileY == 2) begin // star
+            if(tileX < 8 + stars) begin
                 cover_num = STAR_UI;
             end
             else begin
                 cover_num = NONE;
             end
         end
-        else if(tileX == 11 && tileY == 5) begin // direction
+        else if(tileX == 9 && tileY == 5) begin // submarine
             if(disable_direction) begin
                 cover_num = DISABLE_DIR;
             end
             else begin
-                case(direc)
-                    2'b00: cover_num = UP;
-                    2'b01: cover_num = RIGHT;
-                    2'b10: cover_num = DOWN;
-                    2'b11: cover_num = LEFT;
-                endcase
+                cover_num = SUB;
             end
+        end
+        else if(tileX == 9 && tileY == 4) begin // up
+            if(disable_direction==0&&direc==0) begin
+                cover_num = UP;
+            end
+            else begin
+                cover_num = NONE;
+            end
+        end
+        else if(tileX == 10 && tileY == 5) begin // right
+            if(disable_direction==0&&direc==1) begin
+                cover_num = RIGHT;
+            end
+            else begin
+                cover_num = NONE;
+            end
+        end
+        else if(tileX == 9 && tileY == 6) begin // down
+            if(disable_direction==0&&direc==2) begin
+                cover_num = DOWN;
+            end
+            else begin
+                cover_num = NONE;
+            end
+        end
+        else if(tileX == 8 && tileY == 5) begin // left
+            if(disable_direction==0&&direc==3) begin
+                cover_num = LEFT;
+            end
+            else begin
+                cover_num = NONE;
+            end
+        end
+        else if(tileX == 11 && tileY == 8) begin // left
+            cover_num = state + 2;
         end
         else begin
             cover_num = NONE;

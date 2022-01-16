@@ -1,4 +1,4 @@
-`define MAX_PICTURE 27
+`define MAX_PICTURE 28
 // extend this if more pictures are added
 module pixel_gen (
     input clk,
@@ -198,6 +198,13 @@ module pixel_gen (
         .clka(clk),
         .dina(12'b0),
         .douta(pixels[26]),
+        .wea(0)
+    );
+    blk_mem_gen_27 blk_mem_gen_27_inst(
+        .addra(pixel_addr),
+        .clka(clk),
+        .dina(12'b0),
+        .douta(pixels[27]),
         .wea(0)
     );
 

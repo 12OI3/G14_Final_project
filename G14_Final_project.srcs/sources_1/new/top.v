@@ -84,8 +84,8 @@ module Top (
     parameter STAR = 2'b01;
     parameter OBSTACLE = 2'b10;
     parameter EXPLODE = 2'b11;
-    reg [97:0] cur_board;
-    reg [97:0] nex_board;
+    reg [0:97] cur_board;
+    reg [0:97] nex_board;
 
     //main declare
     reg [1:0] heart = 3;//p1 health(0 p2 win)
@@ -119,7 +119,7 @@ module Top (
     //rst
     wire [2:0] rst_p1_position_x;//p1 initial postion_x on board
     wire [2:0] rst_p1_position_y;//p1 initial postion_y on board
-    wire[97:0] rst_board;
+    wire[0:97] rst_board;
     reset _reset(clk,rst,rst_p1_position_x,rst_p1_position_y,rst_board,s0_star_x,s0_star_y,s1_star_x,s1_star_y,s2_star_x,s2_star_y,s3_star_x,s3_star_y);
 
     always @(posedge clk_div_top, posedge rst) begin
@@ -165,25 +165,32 @@ module Top (
                 next_bomb_exist = 0;
                 bomb_position_x = rst_p1_position_x;
                 bomb_position_y = rst_p1_position_y;
+                next_animation_counter = 0;
                 pre_ready_obstacle = 0;
                 ready_obstacle = 0;
                 next_move = 0;
                 nex_board = rst_board;
-                next_state = P1ACK;
+                if(rst)
+                    next_state = IDLE;
+                else
+                    next_state = P1ACK;
             end
             //waiting p1 action
             P1ACK  :begin 
+                next_animation_counter = 0;
+                nex_board = cur_board;
                 if(bomb)begin
                     if(disable_direction==1)
                         next_disable_direction = 0;
                     next_move = 5;
                     next_bomb_exist = ~bomb_exist;
-                    next_animation_counter = 0;
+                    next_p1_position_x = p1_position_x;
+                    next_p1_position_y = p1_position_y;
                     next_state = P1TO2;
                 end
                 else if(up)begin
                     //check if move avaliable
-                    if(p1_position_x>0&&{cur_board[((p1_position_x-1)*7+p1_position_y)*2+1],cur_board[((p1_position_x-1)*7+p1_position_y)*2]}!=OBSTACLE)begin
+                    if(p1_position_x>0&&{cur_board[((p1_position_x-1)*7+p1_position_y)*2],cur_board[((p1_position_x-1)*7+p1_position_y)*2+1]}!=OBSTACLE)begin
                         if(disable_direction==1)
                             next_disable_direction = 0;
                         else
@@ -191,12 +198,13 @@ module Top (
                         next_p1_position_x = p1_position_x-1;
                         next_p1_position_y = p1_position_y;
                         next_move = 1;
+                        next_bomb_exist = bomb_exist;
                         next_state = P1TO2;
                     end
                 end
                 else if(right)begin
                     //check if move avaliable
-                    if(p1_position_y<6&&{cur_board[(p1_position_x*7+p1_position_y+1)*2+1],cur_board[(p1_position_x*7+p1_position_y+1)*2]}!=OBSTACLE)begin
+                    if(p1_position_y<6&&{cur_board[(p1_position_x*7+p1_position_y+1)*2],cur_board[(p1_position_x*7+p1_position_y+1)*2+1]}!=OBSTACLE)begin
                         if(disable_direction==1)
                             next_disable_direction = 0;
                         else
@@ -204,12 +212,13 @@ module Top (
                         next_p1_position_x = p1_position_x;
                         next_p1_position_y = p1_position_y+1;
                         next_move = 2;
+                        next_bomb_exist = bomb_exist;
                         next_state = P1TO2;
                     end
                 end
                 else if(down)begin
                     //check if move avaliable
-                    if(p1_position_x<6&&{cur_board[((p1_position_x+1)*7+p1_position_y)*2+1],cur_board[((p1_position_x+1)*7+p1_position_y)*2]}!=OBSTACLE)begin
+                    if(p1_position_x<6&&{cur_board[((p1_position_x+1)*7+p1_position_y)*2],cur_board[((p1_position_x+1)*7+p1_position_y)*2+1]}!=OBSTACLE)begin
                         if(disable_direction==1)
                             next_disable_direction = 0;
                         else
@@ -217,105 +226,99 @@ module Top (
                         next_p1_position_x = p1_position_x+1;
                         next_p1_position_y = p1_position_y;
                         next_move = 3;
+                        next_bomb_exist = bomb_exist;
                         next_state = P1TO2;
                     end
                 end
                 else if(left)begin
                     //check if move avaliable
-                    if(p1_position_y>0&&{cur_board[(p1_position_x*7+p1_position_y-1)*2+1],cur_board[(p1_position_x*7+p1_position_y-1)*2]}!=OBSTACLE)begin
+                    if(p1_position_y>0&&{cur_board[(p1_position_x*7+p1_position_y-1)*2],cur_board[(p1_position_x*7+p1_position_y-1)*2+1]}!=OBSTACLE)begin
                         if(disable_direction==1)
                             next_disable_direction = 0;
-                        else
+                        else 
                             next_direc = 3;
                         next_p1_position_x = p1_position_x;
                         next_p1_position_y = p1_position_y-1;
                         next_move = 4;
+                        next_bomb_exist = bomb_exist;
                         next_state = P1TO2;
+                    end
+                end
+                else begin
+                    if(next_state==P1ACK)begin
+                        next_direc = direc;
+                        next_p1_position_x = p1_position_x;
+                        next_p1_position_y = p1_position_y;
+                        next_move = move;
+                        next_bomb_exist = bomb_exist;
+                        next_state = P1ACK;
                     end
                 end
             end
             //process p1 action
             P1TO2  :begin 
+                next_p1_position_x = p1_position_x;
+                next_p1_position_y = p1_position_y;
+                nex_board = cur_board;
+                next_move = move;
+                next_bomb_exist = bomb_exist;
+                next_direc = direc;
                 pre_ready_obstacle = 0;
                 if(move==5)begin
                     if(bomb_exist)begin
                         bomb_position_x = p1_position_x;
                         bomb_position_y = p1_position_y;
+                        next_state = P2ACK;
                     end
                     else begin
                         //check middle explode
-                        if({cur_board[(bomb_position_x*7+bomb_position_y)*2+1],cur_board[(bomb_position_x*7+bomb_position_y)*2]}==OBSTACLE)
-                            {nex_board[(bomb_position_x*7+bomb_position_y)*2+1],nex_board[(bomb_position_x*7+bomb_position_y)*2]} = EXPLODE;
+                        if({cur_board[(bomb_position_x*7+bomb_position_y)*2],cur_board[(bomb_position_x*7+bomb_position_y)*2+1]}==OBSTACLE)
+                            {nex_board[(bomb_position_x*7+bomb_position_y)*2],nex_board[(bomb_position_x*7+bomb_position_y)*2+1]} = EXPLODE;
                         //check up explode
-                        if(bomb_position_x>0&&{cur_board[((bomb_position_x-1)*7+bomb_position_y)*2+1],cur_board[((bomb_position_x-1)*7+bomb_position_y)*2]}==OBSTACLE)
-                            {nex_board[((bomb_position_x-1)*7+bomb_position_y)*2+1],nex_board[((bomb_position_x-1)*7+bomb_position_y)*2]} = EXPLODE;
+                        if(bomb_position_x>0&&{cur_board[((bomb_position_x-1)*7+bomb_position_y)*2],cur_board[((bomb_position_x-1)*7+bomb_position_y)*2+1]}==OBSTACLE)
+                            {nex_board[((bomb_position_x-1)*7+bomb_position_y)*2],nex_board[((bomb_position_x-1)*7+bomb_position_y)*2+1]} = EXPLODE;
                         //check right explode
-                        if(bomb_position_y<6&&{cur_board[(bomb_position_x*7+bomb_position_y+1)*2+1],cur_board[(bomb_position_x*7+bomb_position_y+1)*2]}==OBSTACLE)
-                            {nex_board[(bomb_position_x*7+bomb_position_y+1)*2+1],nex_board[(bomb_position_x*7+bomb_position_y+1)*2]} = EXPLODE;
+                        if(bomb_position_y<6&&{cur_board[(bomb_position_x*7+bomb_position_y+1)*2],cur_board[(bomb_position_x*7+bomb_position_y+1)*2+1]}==OBSTACLE)
+                            {nex_board[(bomb_position_x*7+bomb_position_y+1)*2],nex_board[(bomb_position_x*7+bomb_position_y+1)*2+1]} = EXPLODE;
                         //check down explode
-                        if(bomb_position_x<6&&{cur_board[((bomb_position_x+1)*7+bomb_position_y)*2+1],cur_board[((bomb_position_x+1)*7+bomb_position_y)*2]}==OBSTACLE)
-                            {nex_board[((bomb_position_x+1)*7+bomb_position_y)*2+1],nex_board[((bomb_position_x+1)*7+bomb_position_y)*2]} = EXPLODE;
+                        if(bomb_position_x<6&&{cur_board[((bomb_position_x+1)*7+bomb_position_y)*2],cur_board[((bomb_position_x+1)*7+bomb_position_y)*2+1]}==OBSTACLE)
+                            {nex_board[((bomb_position_x+1)*7+bomb_position_y)*2],nex_board[((bomb_position_x+1)*7+bomb_position_y)*2+1]} = EXPLODE;
                         //check left explode
-                        if(bomb_position_y>0&&{cur_board[(bomb_position_x*7+bomb_position_y-1)*2+1],cur_board[(bomb_position_x*7+bomb_position_y-1)*2]}==OBSTACLE)
-                            {nex_board[(bomb_position_x*7+bomb_position_y-1)*2+1],nex_board[(bomb_position_x*7+bomb_position_y-1)*2]} = EXPLODE;
+                        if(bomb_position_y>0&&{cur_board[(bomb_position_x*7+bomb_position_y-1)*2],cur_board[(bomb_position_x*7+bomb_position_y-1)*2+1]}==OBSTACLE)
+                            {nex_board[(bomb_position_x*7+bomb_position_y-1)*2],nex_board[(bomb_position_x*7+bomb_position_y-1)*2+1]} = EXPLODE;
                         
-                        //check middle p1
-                        if(bomb_position_x==p1_position_x&&bomb_position_y==p1_position_y)begin
-                            {nex_board[(bomb_position_x*7+bomb_position_y)*2+1],nex_board[(bomb_position_x*7+bomb_position_y)*2]} = EXPLODE;
-                            if(heart==1)
-                                next_state = P2VIC;
-                            next_heart = heart - 1;
-                        end
-                        //check up p1
-                        if(bomb_position_x-1==p1_position_x&&bomb_position_y==p1_position_y)begin
-                            {nex_board[((bomb_position_x-1)*7+bomb_position_y)*2+1],nex_board[((bomb_position_x-1)*7+bomb_position_y)*2]} = EXPLODE;
-                            if(heart==1)
-                                next_state = P2VIC;
-                            next_heart = heart - 1;
-                        end
-                        //check right p1
-                        if(bomb_position_x==p1_position_x&&bomb_position_y+1==p1_position_y)begin
-                            {nex_board[(bomb_position_x*7+bomb_position_y+1)*2+1],nex_board[(bomb_position_x*7+bomb_position_y+1)*2]} = EXPLODE;
-                            if(heart==1)
-                                next_state = P2VIC;
-                            next_heart = heart - 1;
-                        end
-                        //check down p1
-                        if(bomb_position_x+1==p1_position_x&&bomb_position_y==p1_position_y)begin
-                            {nex_board[((bomb_position_x+1)*7+bomb_position_y)*2+1],nex_board[((bomb_position_x+1)*7+bomb_position_y)*2]} = EXPLODE;
-                            if(heart==1)
-                                next_state = P2VIC;
-                            next_heart = heart - 1;
-                        end
-                        //check left p1
-                        if(bomb_position_x==p1_position_x&&bomb_position_y-1==p1_position_y)begin
-                            {nex_board[(bomb_position_x*7+bomb_position_y-1)*2+1],nex_board[(bomb_position_x*7+bomb_position_y-1)*2]} = EXPLODE;
+                        //check p1 hit
+                        if((bomb_position_x==p1_position_x&&bomb_position_y==p1_position_y)||(bomb_position_x-1==p1_position_x&&bomb_position_y==p1_position_y)||(bomb_position_x==p1_position_x&&bomb_position_y+1==p1_position_y)||(bomb_position_x+1==p1_position_x&&bomb_position_y==p1_position_y)||(bomb_position_x==p1_position_x&&bomb_position_y-1==p1_position_y))begin
+                            {nex_board[(p1_position_x*7+p1_position_y)*2],nex_board[(p1_position_x*7+p1_position_y)*2+1]} = EXPLODE;
                             if(heart==1)
                                 next_state = P2VIC;
                             next_heart = heart - 1;
                         end
 
                         //let explode animation run
-                        next_animation_counter = animation_counter + 1;
                         if(animation_counter == 8'b11111111)begin
                             //clean middle explode
-                            if({cur_board[(bomb_position_x*7+bomb_position_y)*2+1],cur_board[(bomb_position_x*7+bomb_position_y)*2]}==EXPLODE)
-                                {nex_board[(bomb_position_x*7+bomb_position_y)*2+1],nex_board[(bomb_position_x*7+bomb_position_y)*2]} = EMPTY;
+                            if({cur_board[(bomb_position_x*7+bomb_position_y)*2],cur_board[(bomb_position_x*7+bomb_position_y)*2+1]}==EXPLODE)
+                                {nex_board[(bomb_position_x*7+bomb_position_y)*2],nex_board[(bomb_position_x*7+bomb_position_y)*2+1]} = EMPTY;
                             //clean up explode
-                            if(bomb_position_x>0&&{cur_board[((bomb_position_x-1)*7+bomb_position_y)*2+1],cur_board[((bomb_position_x-1)*7+bomb_position_y)*2]}==EXPLODE)
-                                {nex_board[((bomb_position_x-1)*7+bomb_position_y)*2+1],nex_board[((bomb_position_x-1)*7+bomb_position_y)*2]} = EMPTY;
+                            if(bomb_position_x>0&&{cur_board[((bomb_position_x-1)*7+bomb_position_y)*2],cur_board[((bomb_position_x-1)*7+bomb_position_y)*2+1]}==EXPLODE)
+                                {nex_board[((bomb_position_x-1)*7+bomb_position_y)*2],nex_board[((bomb_position_x-1)*7+bomb_position_y)*2+1]} = EMPTY;
                             //clean rigght explode
-                            if(bomb_position_y<6&&{cur_board[(bomb_position_x*7+bomb_position_y+1)*2+1],cur_board[(bomb_position_x*7+bomb_position_y+1)*2]}==EXPLODE)
-                                {nex_board[(bomb_position_x*7+bomb_position_y+1)*2+1],nex_board[(bomb_position_x*7+bomb_position_y+1)*2]} = EMPTY;
+                            if(bomb_position_y<6&&{cur_board[(bomb_position_x*7+bomb_position_y+1)*2],cur_board[(bomb_position_x*7+bomb_position_y+1)*2+1]}==EXPLODE)
+                                {nex_board[(bomb_position_x*7+bomb_position_y+1)*2],nex_board[(bomb_position_x*7+bomb_position_y+1)*2+1]} = EMPTY;
                             //clean down explode
-                            if(bomb_position_x<6&&{cur_board[((bomb_position_x+1)*7+bomb_position_y)*2+1],cur_board[((bomb_position_x+1)*7+bomb_position_y)*2]}==EXPLODE)
-                                {nex_board[((bomb_position_x+1)*7+bomb_position_y)*2+1],nex_board[((bomb_position_x+1)*7+bomb_position_y)*2]} = EMPTY;
+                            if(bomb_position_x<6&&{cur_board[((bomb_position_x+1)*7+bomb_position_y)*2],cur_board[((bomb_position_x+1)*7+bomb_position_y)*2+1]}==EXPLODE)
+                                {nex_board[((bomb_position_x+1)*7+bomb_position_y)*2],nex_board[((bomb_position_x+1)*7+bomb_position_y)*2+1]} = EMPTY;
                             //clean left explode
-                            if(bomb_position_y>0&&{cur_board[(bomb_position_x*7+bomb_position_y-1)*2+1],cur_board[(bomb_position_x*7+bomb_position_y-1)*2]}==EXPLODE)
-                                {nex_board[(bomb_position_x*7+bomb_position_y-1)*2+1],nex_board[(bomb_position_x*7+bomb_position_y-1)*2]} = EMPTY;
+                            if(bomb_position_y>0&&{cur_board[(bomb_position_x*7+bomb_position_y-1)*2],cur_board[(bomb_position_x*7+bomb_position_y-1)*2+1]}==EXPLODE)
+                                {nex_board[(bomb_position_x*7+bomb_position_y-1)*2],nex_board[(bomb_position_x*7+bomb_position_y-1)*2+1]} = EMPTY;
                             //rst animation counter
                             next_animation_counter = 0;
                             next_state = P2ACK;
+                        end
+                        else begin
+                            next_animation_counter = animation_counter + 1;
+                            next_state = P1TO2;
                         end
                     end
                 end
@@ -349,25 +352,39 @@ module Top (
                         else
                             next_stars = stars + 1;
                     end
+                    else begin
+                        next_stars = stars;
+                    end
                 end
             end
             //waiting p2 action
             P2ACK  :begin
                 if(ready_obstacle==1)begin
-                    {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2]} = OBSTACLE;
+                    {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1]} = OBSTACLE;
                     ready_obstacle = 0;
                 end
+                else begin
+                    nex_board = cur_board;
+                end
+
                 if(on_board)begin
-                    if(left_click)begin
+                    if(left_click&&{cur_board[(mouse_position_x*7+mouse_position_y)*2],cur_board[(mouse_position_x*7+mouse_position_y)*2+1]}!=STAR)begin
+                        pre_ready_obstacle = 0;
                         last_mouse_position_x = mouse_position_x;
                         last_mouse_position_y = mouse_position_y;
                         next_state = P2TO1;
                     end
-                    else if(right_click)begin
+                    else if(right_click&&{cur_board[(mouse_position_x*7+mouse_position_y)*2],cur_board[(mouse_position_x*7+mouse_position_y)*2+1]}!=STAR)begin
                         pre_ready_obstacle = 1;
                         last_mouse_position_x = mouse_position_x;
                         last_mouse_position_y = mouse_position_y;
                         next_state = P2TO1;
+                    end
+                    else begin
+                        pre_ready_obstacle = 1;
+                        last_mouse_position_x = mouse_position_x;
+                        last_mouse_position_y = mouse_position_y;
+                        next_state = P2ACK;
                     end
                 end
             end
@@ -376,36 +393,38 @@ module Top (
                 if(pre_ready_obstacle)
                     ready_obstacle = 1;
                 else begin
-                    if({cur_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1],cur_board[(last_mouse_position_x*7+last_mouse_position_y)*2]}==OBSTACLE)
-                        {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2]} = EXPLODE;
+                    {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1]} = EXPLODE;    
                     if(last_mouse_position_x==p1_position_x&&last_mouse_position_y==p1_position_y)begin
-                        {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2]} = EXPLODE;
                         if(heart==1)
                             next_state = P2VIC;
                         next_heart = heart - 1;
                         next_disable_direction = 1;
                     end
+                    else begin
+                        next_heart = heart;
+                        next_disable_direction = 0;
+                    end
                 end
                 //let explode animation run
-                next_animation_counter = animation_counter + 1;
                 if(animation_counter == 8'b11111111)begin
                     //clean middle explode
-                    if({cur_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1],cur_board[(last_mouse_position_x*7+last_mouse_position_y)*2]}==EXPLODE)
-                        {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2]} = EMPTY;
+                    {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1]} = EMPTY;
                     //rst animation counter
                     next_animation_counter = 0;
                     next_state = P1ACK;
                 end
+                else begin
+                    next_animation_counter = animation_counter + 1;
+                    next_state = P2TO1;
+                end
             end
             //p1 win screen
             P1VIC  :begin
-                if(bomb||up||right||down||left||left_click||right_click)
-                    next_state = IDLE;
+                next_state = P1VIC;
             end
             //p2 win screen
             P2VIC  :begin
-                if(bomb||up||right||down||left||left_click||right_click)
-                    next_state = IDLE;
+                next_state = P2VIC;
             end
             default:next_state = IDLE;
         endcase
@@ -414,11 +433,12 @@ module Top (
     //led
     led_controler _led_controler (clk_div_led,rst,bomb_exist,LED);
     //seven segment
-    seven_segment_controler _seven_segment_controler(clk,rst,DISPLAY,DIGIT,p1_position_x,p1_position_y);
+    seven_segment_controler _seven_segment_controler(clk,rst,state,DISPLAY,DIGIT,p1_position_x,p1_position_y);
     //mouse and screen control
     mouse_screen_control _mouse_screen(
         .clk(clk),
         .rst(rst),
+        .state(state),
         .game_board(cur_board),
         .heart(heart),
         .stars(stars),
