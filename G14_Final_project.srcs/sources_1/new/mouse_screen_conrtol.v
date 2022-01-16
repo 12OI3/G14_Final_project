@@ -85,7 +85,7 @@ module mouse_screen_control (
             position_x = tileX - 1;
         end
         else begin
-            position_x = 4'd7;
+            position_x = 3'd7;
         end
     end
 
@@ -94,7 +94,7 @@ module mouse_screen_control (
             position_y = tileY - 1;
         end
         else begin
-            position_y = 4'd7;
+            position_y = 3'd7;
         end
     end
 
