@@ -151,7 +151,7 @@ module Top (
         end
     end
 
-    always @(*) begin
+    always @(posedge clk) begin
         case(state)
             //reset everything here
             IDLE   :begin 
@@ -179,7 +179,7 @@ module Top (
             P1ACK  :begin 
                 next_animation_counter = 0;
                 nex_board = cur_board;
-                if(bomb)begin
+                if(bomb&&{cur_board[((p1_position_x)*7+p1_position_y)*2],cur_board[((p1_position_x)*7+p1_position_y)*2+1]}!=STAR)begin
                     if(disable_direction==1)
                         next_disable_direction = 0;
                     next_move = 5;
@@ -251,7 +251,6 @@ module Top (
                         next_p1_position_y = p1_position_y;
                         next_move = move;
                         next_bomb_exist = bomb_exist;
-                        next_state = P1ACK;
                     end
                 end
             end
@@ -289,10 +288,13 @@ module Top (
                         
                         //check p1 hit
                         if((bomb_position_x==p1_position_x&&bomb_position_y==p1_position_y)||(bomb_position_x-1==p1_position_x&&bomb_position_y==p1_position_y)||(bomb_position_x==p1_position_x&&bomb_position_y+1==p1_position_y)||(bomb_position_x+1==p1_position_x&&bomb_position_y==p1_position_y)||(bomb_position_x==p1_position_x&&bomb_position_y-1==p1_position_y))begin
-                            {nex_board[(p1_position_x*7+p1_position_y)*2],nex_board[(p1_position_x*7+p1_position_y)*2+1]} = EXPLODE;
-                            if(heart==1)
-                                next_state = P2VIC;
-                            next_heart = heart - 1;
+                            if({cur_board[(bomb_position_x*7+bomb_position_y)*2],cur_board[(bomb_position_x*7+bomb_position_y)*2+1]}!=STAR)
+                                {nex_board[(p1_position_x*7+p1_position_y)*2],nex_board[(p1_position_x*7+p1_position_y)*2+1]} = EXPLODE;
+                            if(animation_counter==0)begin
+                                if(heart==1)
+                                    next_state = P2VIC;
+                                next_heart = heart - 1;
+                            end
                         end
 
                         //let explode animation run
@@ -326,31 +328,27 @@ module Top (
                     next_state = P2ACK;
                     if(s0_star_x==p1_position_x&&s0_star_y==p1_position_y&&stars_taked[0]==0)begin
                         next_stars_taked[0] = 1;
-                        if(stars==2)
+                        if(stars>=2)
                             next_state = P1VIC;
-                        else
-                            next_stars = stars + 1;
+                        next_stars = stars + 1;
                     end
                     else if(s1_star_x==p1_position_x&&s1_star_y==p1_position_y&&stars_taked[1]==0)begin
                         next_stars_taked[1] = 1;
-                        if(stars==2)
+                        if(stars>=2)
                             next_state = P1VIC;
-                        else
-                            next_stars = stars + 1;
+                        next_stars = stars + 1;
                     end
                     else if(s2_star_x==p1_position_x&&s2_star_y==p1_position_y&&stars_taked[2]==0)begin
                         next_stars_taked[2] = 1;
-                        if(stars==2)
+                        if(stars>=2)
                             next_state = P1VIC;
-                        else
-                            next_stars = stars + 1;
+                        next_stars = stars + 1;
                     end
                     else if(s3_star_x==p1_position_x&&s3_star_y==p1_position_y&&stars_taked[3]==0)begin
                         next_stars_taked[3] = 1;
-                        if(stars==2)
+                        if(stars>=2)
                             next_state = P1VIC;
-                        else
-                            next_stars = stars + 1;
+                        next_stars = stars + 1;
                     end
                     else begin
                         next_stars = stars;
@@ -361,43 +359,46 @@ module Top (
             P2ACK  :begin
                 if(ready_obstacle==1)begin
                     {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1]} = OBSTACLE;
+                    if(last_mouse_position_x==p1_position_x&&last_mouse_position_y==p1_position_y)begin
+                        if(heart==1)
+                            next_state = P2VIC;
+                        next_heart = heart - 1;
+                    end
                     ready_obstacle = 0;
                 end
                 else begin
-                    nex_board = cur_board;
-                end
-
-                if(on_board)begin
-                    if(left_click&&{cur_board[(mouse_position_x*7+mouse_position_y)*2],cur_board[(mouse_position_x*7+mouse_position_y)*2+1]}!=STAR)begin
-                        pre_ready_obstacle = 0;
-                        last_mouse_position_x = mouse_position_x;
-                        last_mouse_position_y = mouse_position_y;
-                        next_state = P2TO1;
-                    end
-                    else if(right_click&&{cur_board[(mouse_position_x*7+mouse_position_y)*2],cur_board[(mouse_position_x*7+mouse_position_y)*2+1]}!=STAR)begin
-                        pre_ready_obstacle = 1;
-                        last_mouse_position_x = mouse_position_x;
-                        last_mouse_position_y = mouse_position_y;
-                        next_state = P2TO1;
-                    end
-                    else begin
-                        pre_ready_obstacle = 1;
-                        last_mouse_position_x = mouse_position_x;
-                        last_mouse_position_y = mouse_position_y;
-                        next_state = P2ACK;
+                    if(on_board)begin
+                        if(left_click&&{cur_board[(mouse_position_x*7+mouse_position_y)*2],cur_board[(mouse_position_x*7+mouse_position_y)*2+1]}!=STAR)begin
+                            pre_ready_obstacle = 0;
+                            last_mouse_position_x = mouse_position_x;
+                            last_mouse_position_y = mouse_position_y;
+                            next_state = P2TO1;
+                        end
+                        else if(right_click&&{cur_board[(mouse_position_x*7+mouse_position_y)*2],cur_board[(mouse_position_x*7+mouse_position_y)*2+1]}!=STAR)begin
+                            pre_ready_obstacle = 1;
+                            last_mouse_position_x = mouse_position_x;
+                            last_mouse_position_y = mouse_position_y;
+                            next_state = P2TO1;
+                        end
                     end
                 end
             end
             //process p2 action
             P2TO1  :begin
-                if(pre_ready_obstacle)
+                next_state = P2TO1;
+                if(pre_ready_obstacle) begin
                     ready_obstacle = 1;
+                    next_state = P1ACK;
+                end
                 else begin
-                    {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1]} = EXPLODE;    
+                    ready_obstacle = 0;
+                    {nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2],nex_board[(last_mouse_position_x*7+last_mouse_position_y)*2+1]} = EXPLODE;
                     if(last_mouse_position_x==p1_position_x&&last_mouse_position_y==p1_position_y)begin
-                        if(heart==1)
-                            next_state = P2VIC;
-                        next_heart = heart - 1;
+                        if(disable_direction == 0)begin
+                            if(heart==1)
+                                next_state = P2VIC;
+                            next_heart = heart - 1;
+                        end
                         next_disable_direction = 1;
                     end
                     else begin
@@ -413,9 +414,8 @@ module Top (
                     next_animation_counter = 0;
                     next_state = P1ACK;
                 end
-                else begin
+                else if(pre_ready_obstacle==0) begin
                     next_animation_counter = animation_counter + 1;
-                    next_state = P2TO1;
                 end
             end
             //p1 win screen

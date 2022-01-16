@@ -115,7 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -139,34 +138,34 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.runs/synth_1/Top.dcp
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_3/blk_mem_gen_3.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_4/blk_mem_gen_4.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_5/blk_mem_gen_5.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_6/blk_mem_gen_6.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_7/blk_mem_gen_7.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_8/blk_mem_gen_8.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_9/blk_mem_gen_9.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_10/blk_mem_gen_10.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_11/blk_mem_gen_11.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_12/blk_mem_gen_12.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_13/blk_mem_gen_13.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_14/blk_mem_gen_14.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_15/blk_mem_gen_15.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_16/blk_mem_gen_16.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_17/blk_mem_gen_17.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_18/blk_mem_gen_18.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_19/blk_mem_gen_19.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_20/blk_mem_gen_20.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_21/blk_mem_gen_21.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_22/blk_mem_gen_22.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_23/blk_mem_gen_23.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_24/blk_mem_gen_24.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_25/blk_mem_gen_25.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_26/blk_mem_gen_26.xci
-  read_ip -quiet d:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_27/blk_mem_gen_27.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_2/blk_mem_gen_2.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_3/blk_mem_gen_3.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_4/blk_mem_gen_4.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_5/blk_mem_gen_5.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_6/blk_mem_gen_6.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_7/blk_mem_gen_7.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_8/blk_mem_gen_8.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_9/blk_mem_gen_9.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_10/blk_mem_gen_10.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_11/blk_mem_gen_11.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_12/blk_mem_gen_12.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_13/blk_mem_gen_13.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_14/blk_mem_gen_14.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_15/blk_mem_gen_15.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_16/blk_mem_gen_16.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_17/blk_mem_gen_17.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_18/blk_mem_gen_18.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_19/blk_mem_gen_19.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_20/blk_mem_gen_20.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_21/blk_mem_gen_21.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_22/blk_mem_gen_22.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_23/blk_mem_gen_23.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_24/blk_mem_gen_24.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_25/blk_mem_gen_25.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_26/blk_mem_gen_26.xci
+  read_ip -quiet D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/ip/blk_mem_gen_27/blk_mem_gen_27.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/constrs_1/new/Basys3_Master.xdc
 OPTRACE "read constraints: implementation" END { }
