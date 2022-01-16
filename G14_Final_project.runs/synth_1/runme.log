@@ -1,0 +1,64 @@
+
+*** Running vivado
+    with args -log Top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
+
+
+
+****** Vivado v2021.1 (64-bit)
+  **** SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+  **** IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source Top.tcl -notrace
+Command: synth_design -top Top -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 22404
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1128.004 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Top' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clock_divider' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+	Parameter n bound to: 20 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider' (1#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized0' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+	Parameter n bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized0' (1#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+INFO: [Synth 8-6157] synthesizing module 'debounce' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/debounce.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'debounce' (2#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/debounce.v:1]
+INFO: [Synth 8-6157] synthesizing module 'onepulse' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/onepulse.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'onepulse' (3#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/onepulse.v:1]
+INFO: [Synth 8-6157] synthesizing module 'reset' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/reset.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'reset' (4#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/reset.v:1]
+WARNING: [Synth 8-689] width (3) of port connection 'rst_p1_position_x' does not match port width (1) of module 'reset' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:123]
+WARNING: [Synth 8-689] width (3) of port connection 'rst_p1_position_y' does not match port width (1) of module 'reset' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:123]
+INFO: [Synth 8-6157] synthesizing module 'led_controler' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/led_controler.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'led_controler' (5#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/led_controler.v:1]
+INFO: [Synth 8-6157] synthesizing module 'seven_segment_controler' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/seven_segment_controler.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'seven_segment_controler' (6#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/seven_segment_controler.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mouse_screen_control' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_screen_conrtol.v:2]
+INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized1' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+	Parameter n bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized1' (6#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v:1]
+INFO: [Synth 8-6157] synthesizing module 'vga_controller' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/vga.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (7#1) [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/vga.v:6]
+INFO: [Synth 8-6157] synthesizing module 'mouse_controller' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:1]
+ERROR: [Synth 8-439] module 'MouseCtl' not found [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:27]
+	Parameter SYSCLK_FREQUENCY_HZ bound to: 32'sb00000101111101011110000100000000 
+	Parameter CHECK_PERIOD_MS bound to: 32'sb00000000000000000000000111110100 
+	Parameter TIMEOUT_PERIOD_MS bound to: 32'sb00000000000000000000000001100100 
+ERROR: [Synth 8-6156] failed synthesizing module 'mouse_controller' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_controller.v:1]
+ERROR: [Synth 8-6156] failed synthesizing module 'mouse_screen_control' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_screen_conrtol.v:2]
+ERROR: [Synth 8-6156] failed synthesizing module 'Top' [D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/top.v:1]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1128.004 ; gain = 0.000
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+26 Infos, 2 Warnings, 0 Critical Warnings and 5 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Sun Jan 16 13:06:46 2022...

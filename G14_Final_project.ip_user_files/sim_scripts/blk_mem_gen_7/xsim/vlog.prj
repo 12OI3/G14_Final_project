@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../../G14_Final_project.gen/sources_1/ip/blk_mem_gen_7/sim/blk_mem_gen_7.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
