@@ -416,4 +416,6 @@ module Top (
     screen_control _screen_control (clk,rst,cur_board,heart,stars,disable_direction,direc,vgaRed, vgaGreen,vgaBlue,hsync,vsync);
     //led
     led_controler _led_controler (clk_div_led,rst,bomb_exist,LED);
+    //seven segment
+    seven_segment_controler _seven_segment_controler(clk,rst,DISPLAY,DIGIT,p1_position_x,p1_position_y);
 endmodule
