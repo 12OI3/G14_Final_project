@@ -63,7 +63,7 @@ module Top (
     parameter IDLE  = 0;
     parameter P1ACK = 1;
     parameter P1TO2 = 2;
-    parameter P2ACK = 3;
+    parameter P2ACK =   3;
     parameter P2TO1 = 4;
     parameter P1VIC = 5;
     parameter P2VIC = 6;
@@ -94,7 +94,9 @@ module Top (
     reg [1:0] next_stars = 0;
     reg [3:0] stars_taked = 0;//each bit represent stars taken or not
     reg [3:0] next_stars_taked = 0;
-    wire[2:0] s0_star_x,s0_star_y,s1_star_x,s1_star_y,s2_star_x,s2_star_y,s3_star_x,s3_star_y;
+    reg [2:0] s0_star_x,s0_star_y,s1_star_x,s1_star_y,s2_star_x,s2_star_y,s3_star_x,s3_star_y;
+    reg [2:0] next_s0_star_x,next_s0_star_y,next_s1_star_x,next_s1_star_y,next_s2_star_x,next_s2_star_y,next_s3_star_x,next_s3_star_y;
+    wire[2:0] _s0_star_x,_s0_star_y,_s1_star_x,_s1_star_y,_s2_star_x,_s2_star_y,_s3_star_x,_s3_star_y;
     reg disable_direction = 0;//after hit will turn to 1
     reg next_disable_direction = 0;
     reg [1:0] direc = 0;//0 => up, 1 => right, 2 => down, 3 => left
@@ -120,7 +122,7 @@ module Top (
     wire [2:0] rst_p1_position_x;//p1 initial postion_x on board
     wire [2:0] rst_p1_position_y;//p1 initial postion_y on board
     wire[0:97] rst_board;
-    reset _reset(clk,rst,rst_p1_position_x,rst_p1_position_y,rst_board,s0_star_x,s0_star_y,s1_star_x,s1_star_y,s2_star_x,s2_star_y,s3_star_x,s3_star_y);
+    reset _reset(clk,rst,rst_p1_position_x,rst_p1_position_y,rst_board,_s0_star_x,_s0_star_y,_s1_star_x,_s1_star_y,_s2_star_x,_s2_star_y,_s3_star_x,_s3_star_y);
 
     always @(posedge clk_div_top, posedge rst) begin
         if(rst)begin
@@ -131,6 +133,14 @@ module Top (
             direc = 0;
             p1_position_x = rst_p1_position_x;
             p1_position_y = rst_p1_position_y;
+            s0_star_x = _s0_star_x;
+            s0_star_y = _s0_star_y;
+            s1_star_x = _s1_star_x;
+            s1_star_y = _s1_star_y;
+            s2_star_x = _s2_star_x;
+            s2_star_y = _s2_star_y;
+            s3_star_x = _s3_star_x;
+            s3_star_y = _s3_star_y;
             bomb_exist = 0;
             animation_counter = 0;
             move = 0;
@@ -144,6 +154,14 @@ module Top (
             direc = next_direc;
             p1_position_x = next_p1_position_x;
             p1_position_y = next_p1_position_y;
+            s0_star_x = next_s0_star_x;
+            s0_star_y = next_s0_star_y;
+            s1_star_x = next_s1_star_x;
+            s1_star_y = next_s1_star_y;
+            s2_star_x = next_s2_star_x;
+            s2_star_y = next_s2_star_y;
+            s3_star_x = next_s3_star_x;
+            s3_star_y = next_s3_star_y;
             bomb_exist = next_bomb_exist;
             animation_counter = next_animation_counter;
             move = next_move;
@@ -162,6 +180,14 @@ module Top (
                 next_direc = 0;
                 next_p1_position_x = rst_p1_position_x;
                 next_p1_position_y = rst_p1_position_y;
+                next_s0_star_x = _s0_star_x;
+                next_s0_star_y = _s0_star_y;
+                next_s1_star_x = _s1_star_x;
+                next_s1_star_y = _s1_star_y;
+                next_s2_star_x = _s2_star_x;
+                next_s2_star_y = _s2_star_y;
+                next_s3_star_x = _s3_star_x;
+                next_s3_star_y = _s3_star_y;
                 next_bomb_exist = 0;
                 bomb_position_x = rst_p1_position_x;
                 bomb_position_y = rst_p1_position_y;
@@ -320,7 +346,6 @@ module Top (
                         end
                         else begin
                             next_animation_counter = animation_counter + 1;
-                            next_state = P1TO2;
                         end
                     end
                 end

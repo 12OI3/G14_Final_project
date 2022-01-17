@@ -117,6 +117,7 @@ add_files D:/File/NTHU/2A/verilog/G14_Final_project/asset/heart.coe
 add_files D:/File/NTHU/2A/verilog/G14_Final_project/asset/star_ui.coe
 add_files D:/File/NTHU/2A/verilog/G14_Final_project/asset/sub.coe
 read_verilog -library xil_defaultlib {
+  D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/LFSR.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/addr_gen.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/clock_divider.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/debounce.v
@@ -125,6 +126,7 @@ read_verilog -library xil_defaultlib {
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/mouse_screen_conrtol.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/onepulse.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/pixel_gen.v
+  D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/random_gen.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/reset.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/seven_segment_controler.v
   D:/File/NTHU/2A/verilog/G14_Final_project/G14_Final_project.srcs/sources_1/new/vga.v

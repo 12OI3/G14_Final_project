@@ -125,8 +125,13 @@ module addr_gen (
                 cover_num = NONE;
             end
         end
-        else if(tileX == 11 && tileY == 8) begin // left
-            cover_num = state + 2;
+        else if(tileX == 9 && tileY == 7) begin // left
+            if(state == 1)
+                cover_num = 2;
+            else if(state == 3)
+                cover_num = 3;
+            else
+                cover_num = NONE;
         end
         else begin
             cover_num = NONE;
