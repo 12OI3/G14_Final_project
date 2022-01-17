@@ -9,8 +9,8 @@ module random_gen (
     LFSR lfsr(clk, rst, random_shifter);
 
     always @(*) begin
-        rand_x = {random_shifter[5], random_shifter[9], random_shifter[2]} % 7;
-        rand_y = {random_shifter[7], random_shifter[15], random_shifter[6]} % 7;
+        rand_x = {random_shifter[5], random_shifter[9], random_shifter[2]};
+        rand_y = {random_shifter[7], random_shifter[15], random_shifter[6]};
     end
 
 endmodule

@@ -13,7 +13,6 @@ module reset (
     output [2:0] s2_star_y,
     output [2:0] s3_star_x,
     output [2:0] s3_star_y
-    
     );
 
     reg [14:0] x_shift = {3'd0, 3'd2, 3'd5, 3'd5, 3'd1};
@@ -82,17 +81,17 @@ module reset (
     end
 
     always @(*) begin
-        if(x > s3_star_x && y > s3_star_y) begin
-            valid3 = ((x - s3_star_x) + (y - s3_star_y)) > `DISTANCE;
+        if(x > rst_p1_position_x && y > rst_p1_position_y) begin
+            valid3 = ((x - rst_p1_position_x) + (y - rst_p1_position_y)) > `DISTANCE;
         end
-        else if(x > s3_star_x && y <= s3_star_y) begin
-            valid3 = ((x - s3_star_x) + (s3_star_y - y)) > `DISTANCE;
+        else if(x > rst_p1_position_x && y <= rst_p1_position_y) begin
+            valid3 = ((x - rst_p1_position_x) + (rst_p1_position_y - y)) > `DISTANCE;
         end
-        else if(x <= s3_star_x && y > s3_star_y) begin
-            valid3 = ((s3_star_x - x) + (y - s3_star_y)) > `DISTANCE;
+        else if(x <= rst_p1_position_x && y > rst_p1_position_y) begin
+            valid3 = ((rst_p1_position_x - x) + (y - rst_p1_position_y)) > `DISTANCE;
         end
         else begin
-            valid3 = ((s3_star_x - x) + (s3_star_y - y)) > `DISTANCE;
+            valid3 = ((rst_p1_position_x - x) + (rst_p1_position_y - y)) > `DISTANCE;
         end
     end
 
